@@ -1,0 +1,17 @@
+{
+  "name": "cnchar",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "dependencies": {
+    "cnchar-draw": "^3.2.6",
+    "element-plus": "^2.8.5",
+    "vue": "^3.0.4"
+  },
+  "devDependencies": {
+    "@vue/compiler-sfc": "^3.0.4",
+    "vite": "^1.0.0-rc.13"
+  }
+}
