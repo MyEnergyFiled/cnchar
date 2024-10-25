@@ -7,11 +7,11 @@
       <el-input v-model="words" size="large" style="width: 240px" placeholder="输入查询汉字"/>
     </div>
     <div class="option">
-      <el-button @click="reDraw" size="large">查询</el-button>
-      <el-button @click="clear" size="large">清空</el-button>
+      <el-button @click="reDraw" type="primary" size="large" :icon="Search">查询</el-button>
+      <el-button @click="clear" type="danger" size="large" :icon="Delete">清空</el-button>
     </div>
-
-    <div id='drawStroke' :key="key" />
+    <span v-show="words != ''">动画</span><div id='drawAnimation' :key="key"/>
+    <span v-show="words != ''">笔画</span><div id='drawStroke' :key="key"/>
   </div>
 
 </template>
@@ -19,6 +19,10 @@
 <script lang="ts" setup>
 import draw from 'cnchar-draw';
 import {ref} from "vue";
+import {
+  Delete,
+  Search,
+} from '@element-plus/icons-vue'
 
 const words = ref('')
 
@@ -34,7 +38,15 @@ const reDraw = () => {
     el: '#drawStroke',
     type: draw.TYPE.STROKE
   })
+  draw(words.value, {
+    el: '#drawAnimation',
+    type: draw.TYPE.ANIMATION,
+    animation:{
+            loopAnimate: true
+    }
+  })
 }
+
 </script>
 <style scoped lang="css">
 
