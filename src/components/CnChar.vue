@@ -10,8 +10,8 @@
       <el-button @click="reDraw" type="primary" size="large" :icon="Search">查询</el-button>
       <el-button @click="clear" type="danger" size="large" :icon="Delete">清空</el-button>
     </div>
-    <span v-show="words != ''">动画</span><div id='drawAnimation' :key="key"/>
-    <span v-show="words != ''">笔画</span><div id='drawStroke' :key="key"/>
+    <span v-show="show">动画</span><div id='drawAnimation' :key="key"/>
+    <span v-show="show">笔画</span><div id='drawStroke' :key="key"/>
   </div>
 
 </template>
@@ -24,13 +24,18 @@ import {
   Search,
 } from '@element-plus/icons-vue'
 
+draw.setResourceBase('https://char.zhhhs.dscloud.me:12000/draw/')
+
 const words = ref('')
+
+const show = ref(false)
 
 const key = ref(1)
 
 const clear = () => {
   key.value++
   words.value = ''
+  show.value = false
 }
 
 const reDraw = () => {
@@ -42,9 +47,10 @@ const reDraw = () => {
     el: '#drawAnimation',
     type: draw.TYPE.ANIMATION,
     animation:{
-            loopAnimate: true
+      loopAnimate: true
     }
   })
+  show.value = true
 }
 
 </script>
